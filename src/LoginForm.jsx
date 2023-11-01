@@ -1,4 +1,12 @@
-export default function LoginForm({ user, setUser }) {
+import { useContext } from "react";
+import Context from "./Context.js";
+
+export default function LoginForm() {
+	const {
+		dispatch,
+		state: { user },
+	} = useContext(Context);
+
 	return (
 		<form action="">
 			{user === null ? (
@@ -6,12 +14,9 @@ export default function LoginForm({ user, setUser }) {
 					<input type="text" />
 					<button
 						onClick={() =>
-							setUser({
-								id: 1,
-
-								name: "John",
-
-								email: "john.doe@gmail.com",
+							dispatch({
+								type: "user/set",
+								payload: { id: 1, name: "John", email: "john.doe@gmail.com" },
 							})
 						}
 					>
@@ -19,7 +24,16 @@ export default function LoginForm({ user, setUser }) {
 					</button>
 				</>
 			) : (
-				<button onClick={() => setUser(null)}>Sign out</button>
+				<button
+					onClick={() =>
+						dispatch({
+							type: "user/set",
+							payload: null,
+						})
+					}
+				>
+					Sign out
+				</button>
 			)}
 		</form>
 	);

@@ -1,27 +1,33 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import Header from "./Header";
 import MainContent from "./MainContent";
+import Context from "./Context";
+import reducer from "./reducer";
 
 function App() {
-	const [currentPage, setCurrentPage] = useState("home");
+	const [contextValue, setContextValue] = useReducer(reducer, {
+		user: null,
+		theme: "light",
+		language: "en",
+		currency: localStorage.getItem("currency") || "EUR",
+		authHash: null,
+		shoppingCart: [],
+		exchangeRate: 1,
+		currentPage: "home",
+	});
 
-	const [user, setUser] = useState(null);
-
-	// console.log(user);
 	return (
-		<>
-			<Header
-				currentPage={currentPage}
-				setCurrentPage={setCurrentPage}
-				user={user}
-			/>
-			<MainContent
-				currentPage={currentPage}
-				setCurrentPage={setCurrentPage}
-				user={user}
-				setUser={setUser}
-			/>
-		</>
+		<Context.Provider
+			value={{
+				state: contextValue,
+				dispatch: setContextValue,
+			}}
+		>
+			<>
+				<Header />
+				<MainContent />
+			</>
+		</Context.Provider>
 	);
 }
 

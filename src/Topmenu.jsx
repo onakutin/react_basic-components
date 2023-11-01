@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Topmenu.scss";
+import CurrencySelection from "./CurrencySelection";
+import Context from "./Context";
 
-export default function Topmenu({ currentPage, setCurrentPage }) {
+export default function Topmenu() {
+	const {
+		dispatch,
+		state: { currentPage },
+	} = useContext(Context);
+
 	const [open, setOpen] = useState(false);
 
 	const toggleMenu = () => {
@@ -17,7 +24,12 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 							`link` + (currentPage === "home" ? " link--highlighted" : "")
 						}
 						href="#"
-						onClick={() => setCurrentPage("home")}
+						onClick={() =>
+							dispatch({
+								type: "currentPage/set",
+								payload: "home",
+							})
+						}
 					>
 						Home
 					</a>
@@ -26,7 +38,12 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 							`link` + (currentPage === "books" ? " link--highlighted" : "")
 						}
 						href="#books"
-						onClick={() => setCurrentPage("books")}
+						onClick={() =>
+							dispatch({
+								type: "currentPage/set",
+								payload: "books",
+							})
+						}
 					>
 						Books
 					</a>
@@ -35,7 +52,12 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 							`link` + (currentPage === "members" ? " link--highlighted" : "")
 						}
 						href="#members"
-						onClick={() => setCurrentPage("members")}
+						onClick={() =>
+							dispatch({
+								type: "currentPage/set",
+								payload: "members",
+							})
+						}
 					>
 						Members
 					</a>
@@ -44,7 +66,12 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 							`link` + (currentPage === "contact" ? " link--highlighted" : "")
 						}
 						href="#contact"
-						onClick={() => setCurrentPage("contact")}
+						onClick={() =>
+							dispatch({
+								type: "currentPage/set",
+								payload: "contact",
+							})
+						}
 					>
 						Contact
 					</a>
@@ -53,7 +80,12 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 							`link` + (currentPage === "login" ? " link--highlighted" : "")
 						}
 						href="#login"
-						onClick={() => setCurrentPage("login")}
+						onClick={() =>
+							dispatch({
+								type: "currentPage/set",
+								payload: "login",
+							})
+						}
 					>
 						Login
 					</a>
@@ -61,6 +93,7 @@ export default function Topmenu({ currentPage, setCurrentPage }) {
 			) : (
 				""
 			)}
+			<CurrencySelection />
 			<div className="burger-menu" onClick={toggleMenu}>
 				<div className="burger"></div>
 				<div className="burger"></div>

@@ -1,6 +1,11 @@
 .header {
 	background-color: rgb(215, 200, 200);
 	width: 100%;
+	.header__info {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
 	.user {
 		color: black;
 		display: flex;

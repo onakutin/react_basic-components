@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function BookDetail() {
 	const { id } = useParams();
+
+	console.log(id);
+
+	const [book, setBook] = useState(null);
 
 	const loadBook = async () => {
 		const url =
@@ -10,15 +14,11 @@ export default function BookDetail() {
 			id;
 		const response = await fetch(url);
 		const data = await response.json();
-		console.log(data);
+		setBook(data);
 	};
 	useEffect(() => {
 		loadBook();
-	}, [id]);
+	}, []);
 
-	return (
-		<div className="book-detail">
-			<h2>Detail of a book</h2>
-		</div>
-	);
+	return <div className="book-detail">{book ? <h2>{book.title}</h2> : ""}</div>;
 }

@@ -24,8 +24,9 @@ export default function MainContent() {
 					<Route path="/books" element={<Books />} />
 					<Route path="/members" element={<Members />} />
 					<Route path="/contact" element={<Contact />} />
-					<Route path="/book/:id" element={<BookDetail />} />
 					<Route path="/login" element={<LoginForm />} />
+
+					<Route path="/book/:id" element={<BookDetail />} />
 				</Route>
 			</Routes>
 		</main>

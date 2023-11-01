@@ -1,3 +1,18 @@
 .book {
     border-bottom: solid 1px black;
+    display: flex;
+}
+
+.book-info {
+    width: 30%;
+}
+
+.book-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.paginate {
+    font-size: 1.6rem;
+    padding: 0;
 }

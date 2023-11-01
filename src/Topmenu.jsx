@@ -2,12 +2,13 @@ import { useContext, useState } from "react";
 import "./Topmenu.scss";
 import CurrencySelection from "./CurrencySelection";
 import Context from "./Context";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Topmenu() {
-	const {
-		dispatch,
-		state: { currentPage },
-	} = useContext(Context);
+	// const {
+	// 	dispatch,
+	// 	state: { currentPage },
+	// } = useContext(Context);
 
 	const [open, setOpen] = useState(false);
 
@@ -15,80 +16,60 @@ export default function Topmenu() {
 		setOpen(!open);
 	};
 
+	const location = useLocation();
+
 	return (
 		<div className="top-menu">
 			{open ? (
 				<nav className="navigation">
-					<a
+					<Link
 						className={
-							`link` + (currentPage === "home" ? " link--highlighted" : "")
+							`link` + (location.pathname === "/" ? " link--highlighted" : "")
 						}
-						href="#"
-						onClick={() =>
-							dispatch({
-								type: "currentPage/set",
-								payload: "home",
-							})
-						}
+						to="/"
 					>
 						Home
-					</a>
-					<a
+					</Link>
+
+					<Link
 						className={
-							`link` + (currentPage === "books" ? " link--highlighted" : "")
+							`link` +
+							(location.pathname === "books" ? " link--highlighted" : "")
 						}
-						href="#books"
-						onClick={() =>
-							dispatch({
-								type: "currentPage/set",
-								payload: "books",
-							})
-						}
+						to="/books"
 					>
 						Books
-					</a>
-					<a
+					</Link>
+
+					<Link
 						className={
-							`link` + (currentPage === "members" ? " link--highlighted" : "")
+							`link` +
+							(location.pathname === "members" ? " link--highlighted" : "")
 						}
-						href="#members"
-						onClick={() =>
-							dispatch({
-								type: "currentPage/set",
-								payload: "members",
-							})
-						}
+						to="/members"
 					>
 						Members
-					</a>
-					<a
+					</Link>
+
+					<Link
 						className={
-							`link` + (currentPage === "contact" ? " link--highlighted" : "")
+							`link` +
+							(location.pathname === "contact" ? " link--highlighted" : "")
 						}
-						href="#contact"
-						onClick={() =>
-							dispatch({
-								type: "currentPage/set",
-								payload: "contact",
-							})
-						}
+						to="/contact"
 					>
-						Contact
-					</a>
-					<a
+						Contact us
+					</Link>
+
+					<Link
 						className={
-							`link` + (currentPage === "login" ? " link--highlighted" : "")
+							`link` +
+							(location.pathname === "login" ? " link--highlighted" : "")
 						}
-						href="#login"
-						onClick={() =>
-							dispatch({
-								type: "currentPage/set",
-								payload: "login",
-							})
-						}
+						to="/login"
 					>
 						Login
-					</a>
+					</Link>
 				</nav>
 			) : (
 				""

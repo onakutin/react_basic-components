@@ -25,7 +25,7 @@ export default function reducer(state, action) {
 		case "cart/addItem":
 			return {
 				...state,
-				shoppingCart: state.shoppingCart.push(action.payload),
+				shoppingCart: [...state.shoppingCart, action.payload],
 			};
 	}
 

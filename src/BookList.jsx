@@ -28,7 +28,7 @@ export default function BookList() {
 						<h3>{book.title}</h3>
 						<h4>{book.authors.map((author) => author.name)}</h4>
 						<h5>
-							{book.price * state.exchangeRate} {state.currency}
+							{(book.price * state.exchangeRate).toFixed(2)} {state.currency}
 						</h5>
 					</div>
 					<button

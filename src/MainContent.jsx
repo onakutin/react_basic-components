@@ -3,6 +3,12 @@ import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import "./MainContent.scss";
 import Context from "./Context";
+import Books from "./Books";
+import { Route, Routes } from "react-router-dom";
+import Members from "./Members";
+import Contact from "./Contact";
+import BookDetail from "./BookDetail";
+import SubpageLayout from "./SubpageLayout";
 
 export default function MainContent() {
 	const {
@@ -11,19 +17,17 @@ export default function MainContent() {
 	return (
 		<main>
 			{currentPage === "login" ? <LoginForm /> : ""}
+			<Routes>
+				<Route path="/" element={<Homepage />} />
 
-			{currentPage === "home" ? <h2>Welcome home</h2> : ""}
-			{currentPage === "books" ? <h2>List of all books</h2> : ""}
-			{currentPage === "members" ? <h2>This is your personal page</h2> : ""}
-			{currentPage === "contact" ? (
-				<h2>We do not want you to contact us</h2>
-			) : (
-				""
-			)}
-
-			<div className="app">
-				<Homepage />
-			</div>
+				<Route path="/" element={<SubpageLayout />}>
+					<Route path="/books" element={<Books />} />
+					<Route path="/members" element={<Members />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/book/:id" element={<BookDetail />} />
+					<Route path="/login" element={<LoginForm />} />
+				</Route>
+			</Routes>
 		</main>
 	);
 }

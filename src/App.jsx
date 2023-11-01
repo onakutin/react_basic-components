@@ -3,6 +3,7 @@ import Header from "./Header";
 import MainContent from "./MainContent";
 import Context from "./Context";
 import reducer from "./reducer";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
 	const [contextValue, setContextValue] = useReducer(reducer, {
@@ -17,17 +18,19 @@ function App() {
 	});
 
 	return (
-		<Context.Provider
-			value={{
-				state: contextValue,
-				dispatch: setContextValue,
-			}}
-		>
-			<>
-				<Header />
-				<MainContent />
-			</>
-		</Context.Provider>
+		<BrowserRouter>
+			<Context.Provider
+				value={{
+					state: contextValue,
+					dispatch: setContextValue,
+				}}
+			>
+				<>
+					<Header />
+					<MainContent />
+				</>
+			</Context.Provider>
+		</BrowserRouter>
 	);
 }
 
